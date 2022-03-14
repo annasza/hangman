@@ -1,7 +1,7 @@
 import sys
 
 no_of_tries = 5
-word = "pythonn"
+word = "python"
 used_letters = []
 
 user_word = []
@@ -14,6 +14,13 @@ def find_indexes(word, letter):
             indexes.append(index)
 
     return indexes
+
+def show_state_of_game():
+    print()
+    print("".join(user_word))
+    print("Pozostało prób:", no_of_tries)
+    print("Użyte litery:", used_letters)
+    print()
 
 for _ in word: # "_" wykorzystujemy gdy nie używamy potem zmiennej z pętli for
     user_word.append("_")
@@ -30,5 +37,14 @@ while True:
     if no_of_tries == 0:
         print("Koniec gry:(")
         sys.exit(0)
+    else:
+        for index in found_indexes:
+            user_word[index] = letter
 
-    print("Użyte litery:", used_letters)
+        if  "".join(user_word) == word:
+            print()
+            print("Brawo, odgadłeś slowo!!!")
+            print("".join(user_word))
+            sys.exit(0)
+
+    show_state_of_game()
